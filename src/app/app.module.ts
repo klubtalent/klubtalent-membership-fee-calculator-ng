@@ -4,6 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LogoComponent} from './components/logo/logo.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,9 @@ import {LogoComponent} from './components/logo/logo.component';
   ],
   imports: [
     BrowserModule,
+
+    MatToolbarModule,
+
     AppRoutingModule
   ],
   providers: [],
