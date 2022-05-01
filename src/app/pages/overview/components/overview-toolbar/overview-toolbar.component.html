@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <div class="content flexcontainer">
+    <div style="position: relative">
+      <app-logo [firstLetter]=true [otherLetters]=false style="position: absolute; top: 0; left: 0;"></app-logo>
+      <app-logo [firstLetter]=false [otherLetters]=true></app-logo>
+    </div>
+    <span class="title" *ngIf="media > mediaType.SMALL">| Mitgliedsbeitragsrechner</span>
+    <div class="flexbox"></div>
+  </div>
+</mat-toolbar>
