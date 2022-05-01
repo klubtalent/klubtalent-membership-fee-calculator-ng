@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/klubtalent-membership-fee-calculator",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
