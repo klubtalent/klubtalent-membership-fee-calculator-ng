@@ -1,10 +1,18 @@
 {
   "hosting": {
-    "public": "dist/klubtalent-membership-fee-calculator",
+    "site": "klubtalent-membership-fee",
+    "public": "dist/klubtalent-membership-fee-calculator-ng",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
+
