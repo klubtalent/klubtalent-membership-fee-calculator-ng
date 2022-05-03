@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
 
-  theme: 'blue',
+  theme: 'dark-blue',
 };
