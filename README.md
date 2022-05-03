@@ -4,7 +4,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/klubtalent/klubtalent-membership-fee-calculator-ng">
-    <img src="./logo.png" alt="Logo" width="80" height="80">
+    <img src="./src/assets/icons-maskable-dark-blue/maskable_icon_x96.png" alt="Logo" width="80" height="80">
   </a>
 
   <h1 align="center">Klubtalent Membership Fee Calculator</h1>
