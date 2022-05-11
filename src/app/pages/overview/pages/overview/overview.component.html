@@ -12,19 +12,47 @@
         <ng-template matStepLabel>Wie viele Mitglieder hat dein Verein?</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Mitglieder</mat-label>
-          <input matInput type="number" placeholder="0" formControlName="firstCtrl" required>
+          <input matInput type="number" placeholder="0" formControlName="memberControl" required [(ngModel)]="members">
         </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>weiter</button>
+        <div class="flexcontainer">
+          <div class="flexbox"></div>
+          <button mat-button matStepperNext color="primary">weiter</button>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
         </div>
       </form>
     </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Fertig! </ng-template>
+    <mat-step [stepControl]="stateFormGroup!">
+      <form [formGroup]="stateFormGroup!">
+        <ng-template matStepLabel>In welchem Bundesland agiert dein Verein?</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-select placeholder="Bundesland" formControlName="federalStateControl" required
+                      [(ngModel)]="federalState">
+            <mat-option [value]="federalState" *ngFor="let federalState of federalStates">
+              <span class="state-logo-wrapper">
+                  <img class="state-logo" alt="" [src]="getFederalStateLogo(federalState)"/>
+              </span>
+              {{ federalState }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="flexcontainer">
+          <button mat-button matStepperPrevious color="primary">zurück</button>
+          <div class="flexbox"></div>
+          <button mat-button matStepperNext color="primary" (click)="onFinalStepReached()">weiter</button>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step (interacted)="onFinalStepReached()">
+      <ng-template matStepLabel>Fertig!</ng-template>
       <p>Der optimale Mitgliedsbeitrag für deinen Verein ist</p>
-      <div>
-        <button mat-button matStepperPrevious>zurück</button>
-        <button mat-button (click)="stepper.reset()">von vorn beginnen</button>
+      <h1 class="suggested-fee">0 Euro</h1>
+
+      <div class="flexcontainer">
+        <button mat-button matStepperPrevious color="primary">zurück</button>
+        <div class="flexbox"></div>
+        <button mat-button (click)="stepper.reset()" color="primary">von vorn beginnen</button>
+        <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
       </div>
     </mat-step>
   </mat-stepper>

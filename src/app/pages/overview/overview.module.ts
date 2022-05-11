@@ -11,6 +11,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -26,10 +28,12 @@ import {MatIconModule} from "@angular/material/icon";
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatOptionModule,
     MatToolbarModule,
+    MatSelectModule,
     MatStepperModule,
 
-    OverviewRoutingModule
+    OverviewRoutingModule,
   ]
 })
 export class OverviewModule {
