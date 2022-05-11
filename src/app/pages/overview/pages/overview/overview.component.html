@@ -2,7 +2,7 @@
 
 <div class="content">
 
-  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper (selectionChange)="onStepChange()">
     <ng-template matStepperIcon="edit">
       <mat-icon>done</mat-icon>
     </ng-template>
@@ -37,7 +37,7 @@
           [backgroundColor]="offeringsBackgroundColor"
           [textColor]="offeringsTextColor"
           (itemsSelectedEventEmitter)="onOfferingsSelected($event)"></app-offerings-selection>
-        <div class="button-container flexcontainer">
+        <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
           <button mat-button matStepperPrevious color="accent">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
@@ -59,7 +59,7 @@
           <mat-label>Mitglieder</mat-label>
           <input matInput type="number" placeholder="0" formControlName="membersControl" required [(ngModel)]="members">
         </mat-form-field>
-        <div class="flexcontainer">
+        <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
           <button mat-button matStepperPrevious color="accent">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
@@ -76,10 +76,11 @@
         <ng-template matStepLabel>Wie hoch ist der monatliche Mitgliedsbeitrag deines Vereins aktuell?</ng-template>
         <mat-form-field appearance="fill" floatLabel="always">
           <mat-label>Mitgliedsbeitrag</mat-label>
-          <input matInput type="number" class="example-right-align" placeholder="0" formControlName="membershipFeesControl" required [(ngModel)]="membershipFees">
+          <input matInput type="number" class="example-right-align" placeholder="0"
+                 formControlName="membershipFeesControl" required [(ngModel)]="membershipFees">
           <span matSuffix>.00&nbsp;Euro</span>
         </mat-form-field>
-        <div class="flexcontainer">
+        <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
           <button mat-button matStepperPrevious color="accent">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
@@ -105,12 +106,12 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div class="flexcontainer">
+        <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
           <button mat-button matStepperPrevious color="accent">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
           <button mat-button matStepperNext color="accent"
-                  [disabled]="stateFormGroup == undefined || !stateFormGroup.valid" (click)="onFinalStepReached()">
+                  [disabled]="stateFormGroup == undefined || !stateFormGroup.valid" (click)="onStepChange()">
             weiter
           </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -118,11 +119,16 @@
       </form>
     </mat-step>
 
-    <mat-step (interacted)="onFinalStepReached()">
+    <mat-step>
       <ng-template matStepLabel>Fertig!</ng-template>
       <p>Der optimale Mitgliedsbeitrag für deinen Verein ist</p>
-      <h1 class="suggested-fee">0 Euro</h1>
-      <div class="flexcontainer">
+      <div *ngIf="membershipFees != undefined && suggestedMembershipFees != undefined">
+        <span class="current-fee">{{ membershipFees }} Euro</span>
+        <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees > membershipFees" [svgIcon]="'arrow-top-right-thick'"></mat-icon>
+        <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees < membershipFees" [svgIcon]="'arrow-bottom-right-thick'"></mat-icon>
+        <span class="suggested-fee">{{ suggestedMembershipFees }} Euro</span>
+      </div>
+      <div class="flexcontainer button-container">
         <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
         <button mat-button matStepperPrevious color="accent">zurück</button>
         <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>

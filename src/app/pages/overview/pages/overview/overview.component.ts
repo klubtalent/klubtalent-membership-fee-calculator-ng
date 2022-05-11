@@ -8,6 +8,7 @@ import {MaterialColorService} from "../../../../core/ui/services/material-color.
 import {HueType} from "../../../../core/ui/model/hue-type.enum";
 import {MaterialIconService} from "../../../../core/ui/services/material-icon.service";
 import {MatStepper} from "@angular/material/stepper";
+import {MembershipFeeService} from "../../../../core/membership-fee/services/membership-fee.service";
 
 /**
  * Displays overview page
@@ -19,7 +20,8 @@ import {MatStepper} from "@angular/material/stepper";
 })
 export class OverviewComponent implements OnInit, OnDestroy {
 
-  @ViewChild(MatStepper, { static: false }) stepper: MatStepper | undefined;
+  /** Stepper component */
+  @ViewChild(MatStepper, {static: false}) stepper: MatStepper | undefined;
 
   /** Whether the stepper is linear or not */
   isLinear = true;
@@ -54,6 +56,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   membershipFees: number | undefined;
   /** Federal state */
   federalState = "";
+
+  /** Suggested membership fees */
+  suggestedMembershipFees: number | undefined;
 
   /** List of sports */
   sportsList = [
@@ -129,11 +134,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
    * @param materialColorService material color service
    * @param materialIconService material icon service
    * @param mediaService media service
+   * @param membershipFeeService membership fee service
    */
   constructor(private formBuilder: FormBuilder,
               private materialColorService: MaterialColorService,
               private materialIconService: MaterialIconService,
-              private mediaService: MediaService) {
+              private mediaService: MediaService,
+              private membershipFeeService: MembershipFeeService) {
   }
 
   //
@@ -228,10 +235,16 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Handles final step being reached
+   * Handles step being changed
    */
-  onFinalStepReached() {
-    console.log(`final step reached`);
+  onStepChange() {
+    this.suggestedMembershipFees = this.membershipFeeService.calculateSuggestedMembershipFees(
+      this.sports,
+      this.offerings,
+      this.members,
+      this.membershipFees,
+      this.federalState
+    );
   }
 
   /**
