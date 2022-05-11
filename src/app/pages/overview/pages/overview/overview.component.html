@@ -16,11 +16,10 @@
           [textColor]="sportsTextColor"
           (itemsSelectedEventEmitter)="onSportsSelected($event)"></app-sports-selection>
         <div class="button-container flexcontainer">
-          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+          <div class="flexbox"></div>
           <button mat-button matStepperNext color="accent" *ngIf="sports.length === 0">
             weiter ohne Auswahl
           </button>
-          <div class="flexbox" *ngIf="media < mediaType.MEDIUM"></div>
           <button mat-button matStepperNext color="accent" *ngIf="sports.length > 0">
             weiter
           </button>
@@ -123,9 +122,11 @@
       <ng-template matStepLabel>Fertig!</ng-template>
       <p>Der optimale Mitgliedsbeitrag für deinen Verein ist</p>
       <div *ngIf="membershipFees != undefined && suggestedMembershipFees != undefined">
-        <span class="current-fee">{{ membershipFees }} Euro</span>
-        <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees > membershipFees" [svgIcon]="'arrow-top-right-thick'"></mat-icon>
-        <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees < membershipFees" [svgIcon]="'arrow-bottom-right-thick'"></mat-icon>
+        <span class="current-fee">{{ membershipFees }} <span *ngIf="media > mediaType.SMALL">Euro</span></span>
+        <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees > membershipFees"
+                  [svgIcon]="'arrow-top-right-thick'"></mat-icon>
+        <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees < membershipFees"
+                  [svgIcon]="'arrow-bottom-right-thick'"></mat-icon>
         <span class="suggested-fee">{{ suggestedMembershipFees }} Euro</span>
       </div>
       <div class="flexcontainer button-container">
