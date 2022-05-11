@@ -22,6 +22,10 @@
   .mat-toolbar {
     background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
   }
+
+  .mat-stepper-vertical, .mat-stepper-horizontal {
+    background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
+  }
 }
 
 .klubtalent-dark-blue-theme {
@@ -37,6 +41,10 @@
   }
 
   .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-dark-blue-primary, 50);
+  }
+
+  .mat-stepper-vertical, .mat-stepper-horizontal {
     background: mat.get-color-from-palette($klubtalent-dark-blue-primary, 50);
   }
 }
@@ -56,6 +64,10 @@
   .mat-toolbar {
     background: mat.get-color-from-palette($klubtalent-purple-primary, 50);
   }
+
+  .mat-stepper-vertical, .mat-stepper-horizontal {
+    background: mat.get-color-from-palette($klubtalent-purple-primary, 50);
+  }
 }
 
 .klubtalent-yellow-theme {
@@ -73,6 +85,10 @@
   .mat-toolbar {
     background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);
   }
+
+  .mat-stepper-vertical, .mat-stepper-horizontal {
+    background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);
+  }
 }
 
 .klubtalent-green-theme {
@@ -88,6 +104,10 @@
   }
 
   .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-green-primary, 50);
+  }
+
+  .mat-stepper-vertical, .mat-stepper-horizontal {
     background: mat.get-color-from-palette($klubtalent-green-primary, 50);
   }
 }

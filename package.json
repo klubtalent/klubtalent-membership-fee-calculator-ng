@@ -8,7 +8,8 @@
     "build": "ng build",
     "build:ci": "npm run clean && npm run build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compodoc": "compodoc src/app -p tsconfig.json --output reports/documentation/"
   },
   "private": true,
   "dependencies": {

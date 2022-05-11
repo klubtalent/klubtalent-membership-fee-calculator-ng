@@ -18,6 +18,8 @@ export class MaterialIconService {
    */
   public initializeIcons(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('arrow-left', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/arrow-left.svg'));
+    iconRegistry.addSvgIcon('home-variant', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/home-variant.svg'));
+    iconRegistry.addSvgIcon('pencil-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/pencil-outline.svg'));
 
     iconRegistry.addSvgIcon('badminton', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/badminton.svg'));
     iconRegistry.addSvgIcon('baseball', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/baseball.svg'));

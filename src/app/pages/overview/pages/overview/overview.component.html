@@ -1,5 +1,32 @@
-<app-overview-toolbar class="toolbar"
-                      (menuItemEventEmitter)="onMenuItemClicked($event)"></app-overview-toolbar>
+<app-overview-toolbar class="toolbar" (menuItemEventEmitter)="onMenuItemClicked($event)"></app-overview-toolbar>
 
 <div class="content">
+
+  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+
+    <mat-step [stepControl]="membersFormGroup!">
+      <form [formGroup]="membersFormGroup!">
+        <ng-template matStepLabel>Wie viele Mitglieder hat dein Verein?</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Mitglieder</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>weiter</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Fertig! </ng-template>
+      <p>Der optimale Mitgliedsbeitrag für deinen Verein ist</p>
+      <div>
+        <button mat-button matStepperPrevious>zurück</button>
+        <button mat-button (click)="stepper.reset()">von vorn beginnen</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+
 </div>

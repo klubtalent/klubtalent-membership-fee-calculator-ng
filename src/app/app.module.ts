@@ -7,13 +7,14 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {UiModule} from "./core/ui/ui.module";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
 
     UiModule,
 
