@@ -18,7 +18,7 @@ export class MaterialIconService {
    */
   public initializeIcons(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('arrow-left', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/arrow-left.svg'));
-    iconRegistry.addSvgIcon('arrow-right-bold', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/arrow-right-bold.svg'));
+    iconRegistry.addSvgIcon('arrow-right-thick', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/arrow-right-tick.svg'));
     iconRegistry.addSvgIcon('arrow-bottom-right-thick', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/arrow-bottom-right-thick.svg'));
     iconRegistry.addSvgIcon('arrow-top-right-thick', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/arrow-top-right-thick.svg'));
     iconRegistry.addSvgIcon('home-variant', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/home-variant.svg'));

@@ -125,6 +125,8 @@
         <span class="current-fee">{{ membershipFees }} <span *ngIf="media > mediaType.SMALL">Euro</span></span>
         <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees > membershipFees"
                   [svgIcon]="'arrow-top-right-thick'"></mat-icon>
+        <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees === membershipFees"
+                  [svgIcon]="'arrow-right-thick'"></mat-icon>
         <mat-icon class="update-arrow" *ngIf="suggestedMembershipFees < membershipFees"
                   [svgIcon]="'arrow-bottom-right-thick'"></mat-icon>
         <span class="suggested-fee">{{ suggestedMembershipFees }} Euro</span>
