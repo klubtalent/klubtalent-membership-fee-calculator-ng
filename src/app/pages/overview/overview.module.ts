@@ -13,12 +13,15 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
+import {TagChipsModule} from "../../ui/tag-chips/tag-chips.module";
+import {SportsSelectionComponent} from './components/sports-selection/sports-selection.component';
 
 @NgModule({
   declarations: [
     LogoComponent,
     OverviewComponent,
     OverviewToolbarComponent,
+    SportsSelectionComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import {MatOptionModule} from "@angular/material/core";
     MatStepperModule,
 
     OverviewRoutingModule,
+    TagChipsModule,
   ]
 })
 export class OverviewModule {

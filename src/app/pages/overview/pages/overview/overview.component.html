@@ -7,6 +7,27 @@
       <mat-icon>done</mat-icon>
     </ng-template>
 
+    <mat-step [stepControl]="sportsFormGroup!">
+      <form [formGroup]="sportsFormGroup!">
+        <ng-template matStepLabel>Was macht dein Verein?</ng-template>
+        <app-sports-selection
+          [itemsList]="sportsList"
+          [backgroundColor]="sportsBackgroundColor"
+          [textColor]="sportsTextColor"
+          (itemsSelectedEventEmitter)="onSportsSelected($event)"></app-sports-selection>
+        <div class="button-container flexcontainer">
+          <div class="flexbox"></div>
+          <button mat-button matStepperNext color="accent" *ngIf="sports.length === 0">
+            weiter ohne Auswahl
+          </button>
+          <button mat-button matStepperNext color="accent" *ngIf="sports.length > 0">
+            weiter
+          </button>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+        </div>
+      </form>
+    </mat-step>
+
     <mat-step [stepControl]="membersFormGroup!">
       <form [formGroup]="membersFormGroup!">
         <ng-template matStepLabel>Wie viele Mitglieder hat dein Verein?</ng-template>
@@ -15,6 +36,7 @@
           <input matInput type="number" placeholder="0" formControlName="memberControl" required [(ngModel)]="members">
         </mat-form-field>
         <div class="flexcontainer">
+          <button mat-button matStepperPrevious color="primary">zurück</button>
           <div class="flexbox"></div>
           <button mat-button matStepperNext color="primary">weiter</button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -27,7 +49,7 @@
         <mat-form-field appearance="fill">
           <mat-select placeholder="Bundesland" formControlName="federalStateControl" required
                       [(ngModel)]="federalState">
-            <mat-option [value]="federalState" *ngFor="let federalState of federalStates">
+            <mat-option [value]="federalState" *ngFor="let federalState of federalStatesList">
               <span class="state-logo-wrapper">
                   <img class="state-logo" alt="" [src]="getFederalStateLogo(federalState)"/>
               </span>

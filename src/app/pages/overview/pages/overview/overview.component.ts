@@ -1,10 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MatOptionSelectionChange} from "@angular/material/core";
 import {MediaService} from "../../../../core/ui/services/media.service";
 import {Media} from "../../../../core/ui/model/media.enum";
 import {Subject} from "rxjs";
 import {filter, takeUntil} from "rxjs/operators";
+import {MaterialColorService} from "../../../../core/ui/services/material-color.service";
+import {HueType} from "../../../../core/ui/model/hue-type.enum";
+import {MaterialIconService} from "../../../../core/ui/services/material-icon.service";
 
 /**
  * Displays overview page
@@ -19,18 +21,64 @@ export class OverviewComponent implements OnInit, OnDestroy {
   /** Whether the stepper is linear or not */
   isLinear = true;
 
+  /** Form group for sports */
+  sportsFormGroup: FormGroup | undefined;
   /** Form group for members */
   membersFormGroup: FormGroup | undefined;
   /** Form group for state */
   stateFormGroup: FormGroup | undefined;
 
+  /** Background color for tag */
+  sportsBackgroundColor = 'transparent';
+  /** Text color for tag */
+  sportsTextColor = 'black';
+
+  /** Sports */
+  sports: string[] = [];
+  /** Offerings */
+  offerings: string[] = [];
   /** Member count */
   members = 0;
   /** Federal state */
   federalState = "";
 
+  /** List of sports */
+  sportsList = [
+    "Badminton",
+    "Baseball",
+    "Basketball",
+    "Beachvolleyball",
+    "Biathlon",
+    "Boxen",
+    "Curling",
+    "Eislaufen",
+    "Fechten",
+    "Football",
+    "Fußball",
+    "Golf",
+    "Handball",
+    "Hockey",
+    "Joggen",
+    "Kampfsport",
+    "Karate",
+    "Kayakfahren",
+    "Kickboxen",
+    "Klettern",
+    "Kricket",
+    "Laufen",
+    "Radfahren",
+    "Rudern",
+    "Rugby",
+    "Squash",
+    "Schwimmen",
+    "Skateboarden",
+    "Tennis",
+    "Tischtennis",
+    "Volleyball",
+    "Yoga",
+  ]
   /** List of federal states */
-  federalStates = [
+  federalStatesList = [
     "Bayern",
     "Baden-Württemberg",
     "Berlin",
@@ -60,9 +108,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    * @param formBuilder form builder
+   * @param materialColorService material color service
+   * @param materialIconService material icon service
    * @param mediaService media service
    */
-  constructor(private formBuilder: FormBuilder, private mediaService: MediaService) {
+  constructor(private formBuilder: FormBuilder,
+              private materialColorService: MaterialColorService,
+              private materialIconService: MaterialIconService,
+              private mediaService: MediaService) {
   }
 
   //
@@ -75,6 +128,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initializeFormGroups();
     this.initializeMedia();
+    this.initializeMaterialColors();
   }
 
   /**
@@ -92,6 +146,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
    * Initializes form groups
    */
   private initializeFormGroups() {
+    this.sportsFormGroup = this.formBuilder.group({});
     this.membersFormGroup = this.formBuilder.group({
       memberControl: ['', Validators.min(1)],
     });
@@ -114,9 +169,24 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.mediaService.fetchMedia();
   }
 
+  /**
+   * Initializes material colors
+   */
+  private initializeMaterialColors() {
+    this.sportsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._200);
+    this.sportsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
+  }
+
   //
   // Actions
   //
+
+  /**
+   * Handle selection of sports
+   */
+  onSportsSelected(sports: string[]) {
+    this.sports = sports;
+  }
 
   /**
    * Handles federal state selection
