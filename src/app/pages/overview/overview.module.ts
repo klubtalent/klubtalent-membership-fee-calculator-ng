@@ -15,13 +15,15 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
 import {TagChipsModule} from "../../ui/tag-chips/tag-chips.module";
 import {SportsSelectionComponent} from './components/sports-selection/sports-selection.component';
+import { OfferingsSelectionComponent } from './components/offerings-selection/offerings-selection.component';
 
 @NgModule({
   declarations: [
     LogoComponent,
     OverviewComponent,
     OverviewToolbarComponent,
-    SportsSelectionComponent
+    SportsSelectionComponent,
+    OfferingsSelectionComponent
   ],
   imports: [
     CommonModule,

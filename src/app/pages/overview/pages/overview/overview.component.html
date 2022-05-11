@@ -7,8 +7,8 @@
       <mat-icon>done</mat-icon>
     </ng-template>
 
-    <mat-step [stepControl]="sportsFormGroup!">
-      <form [formGroup]="sportsFormGroup!">
+    <mat-step [stepControl]="offeringsFormGroup!">
+      <form [formGroup]="offeringsFormGroup!">
         <ng-template matStepLabel>Was macht dein Verein?</ng-template>
         <app-sports-selection
           [itemsList]="sportsList"
@@ -16,11 +16,35 @@
           [textColor]="sportsTextColor"
           (itemsSelectedEventEmitter)="onSportsSelected($event)"></app-sports-selection>
         <div class="button-container flexcontainer">
-          <div class="flexbox"></div>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
           <button mat-button matStepperNext color="accent" *ngIf="sports.length === 0">
             weiter ohne Auswahl
           </button>
+          <div class="flexbox" *ngIf="media < mediaType.MEDIUM"></div>
           <button mat-button matStepperNext color="accent" *ngIf="sports.length > 0">
+            weiter
+          </button>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="offeringsFormGroup!">
+      <form [formGroup]="offeringsFormGroup!">
+        <ng-template matStepLabel>Hat dein Verein andere Angebote?</ng-template>
+        <app-offerings-selection
+          [itemsList]="offeringsList"
+          [backgroundColor]="offeringsBackgroundColor"
+          [textColor]="offeringsTextColor"
+          (itemsSelectedEventEmitter)="onOfferingsSelected($event)"></app-offerings-selection>
+        <div class="button-container flexcontainer">
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+          <button mat-button matStepperPrevious color="accent">zurück</button>
+          <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
+          <button mat-button matStepperNext color="accent" *ngIf="offerings.length === 0">
+            keine weiteren Angebote
+          </button>
+          <button mat-button matStepperNext color="accent" *ngIf="offerings.length > 0">
             weiter
           </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -36,13 +60,17 @@
           <input matInput type="number" placeholder="0" formControlName="memberControl" required [(ngModel)]="members">
         </mat-form-field>
         <div class="flexcontainer">
-          <button mat-button matStepperPrevious color="primary">zurück</button>
-          <div class="flexbox"></div>
-          <button mat-button matStepperNext color="primary">weiter</button>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+          <button mat-button matStepperPrevious color="accent">zurück</button>
+          <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
+          <button mat-button matStepperNext color="accent"
+                  [disabled]="membersFormGroup == undefined || !membersFormGroup.valid">weiter
+          </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
         </div>
       </form>
     </mat-step>
+
     <mat-step [stepControl]="stateFormGroup!">
       <form [formGroup]="stateFormGroup!">
         <ng-template matStepLabel>In welchem Bundesland agiert dein Verein?</ng-template>
@@ -58,25 +86,31 @@
           </mat-select>
         </mat-form-field>
         <div class="flexcontainer">
-          <button mat-button matStepperPrevious color="primary">zurück</button>
-          <div class="flexbox"></div>
-          <button mat-button matStepperNext color="primary" (click)="onFinalStepReached()">weiter</button>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+          <button mat-button matStepperPrevious color="accent">zurück</button>
+          <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
+          <button mat-button matStepperNext color="accent"
+                  [disabled]="stateFormGroup == undefined || !stateFormGroup.valid" (click)="onFinalStepReached()">
+            weiter
+          </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
         </div>
       </form>
     </mat-step>
+
     <mat-step (interacted)="onFinalStepReached()">
       <ng-template matStepLabel>Fertig!</ng-template>
       <p>Der optimale Mitgliedsbeitrag für deinen Verein ist</p>
       <h1 class="suggested-fee">0 Euro</h1>
-
       <div class="flexcontainer">
-        <button mat-button matStepperPrevious color="primary">zurück</button>
-        <div class="flexbox"></div>
-        <button mat-button (click)="stepper.reset()" color="primary">von vorn beginnen</button>
+        <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+        <button mat-button matStepperPrevious color="accent">zurück</button>
+        <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
+        <button mat-button (click)="onResetStepper()" color="accent">von vorn beginnen</button>
         <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
       </div>
     </mat-step>
+
   </mat-stepper>
 
 </div>

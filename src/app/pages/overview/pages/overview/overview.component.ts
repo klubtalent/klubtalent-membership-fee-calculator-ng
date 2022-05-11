@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MediaService} from "../../../../core/ui/services/media.service";
 import {Media} from "../../../../core/ui/model/media.enum";
@@ -7,6 +7,7 @@ import {filter, takeUntil} from "rxjs/operators";
 import {MaterialColorService} from "../../../../core/ui/services/material-color.service";
 import {HueType} from "../../../../core/ui/model/hue-type.enum";
 import {MaterialIconService} from "../../../../core/ui/services/material-icon.service";
+import {MatStepper} from "@angular/material/stepper";
 
 /**
  * Displays overview page
@@ -18,11 +19,15 @@ import {MaterialIconService} from "../../../../core/ui/services/material-icon.se
 })
 export class OverviewComponent implements OnInit, OnDestroy {
 
+  @ViewChild(MatStepper, { static: false }) stepper: MatStepper | undefined;
+
   /** Whether the stepper is linear or not */
   isLinear = true;
 
   /** Form group for sports */
   sportsFormGroup: FormGroup | undefined;
+  /** Form group for offerings */
+  offeringsFormGroup: FormGroup | undefined;
   /** Form group for members */
   membersFormGroup: FormGroup | undefined;
   /** Form group for state */
@@ -32,6 +37,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
   sportsBackgroundColor = 'transparent';
   /** Text color for tag */
   sportsTextColor = 'black';
+  /** Background color for tag */
+  offeringsBackgroundColor = 'transparent';
+  /** Text color for tag */
+  offeringsTextColor = 'black';
 
   /** Sports */
   sports: string[] = [];
@@ -76,6 +85,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
     "Tischtennis",
     "Volleyball",
     "Yoga",
+  ]
+  /** List of offerings */
+  offeringsList = [
+    "Musik",
+    "Kultur"
   ]
   /** List of federal states */
   federalStatesList = [
@@ -147,6 +161,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
    */
   private initializeFormGroups() {
     this.sportsFormGroup = this.formBuilder.group({});
+    this.offeringsFormGroup = this.formBuilder.group({});
     this.membersFormGroup = this.formBuilder.group({
       memberControl: ['', Validators.min(1)],
     });
@@ -175,6 +190,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   private initializeMaterialColors() {
     this.sportsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._200);
     this.sportsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
+    this.offeringsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._200);
+    this.offeringsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
   }
 
   //
@@ -186,6 +203,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
    */
   onSportsSelected(sports: string[]) {
     this.sports = sports;
+  }
+
+  /**
+   * Handle selection of offerings
+   */
+  onOfferingsSelected(offerings: string[]) {
+    this.offerings = offerings;
   }
 
   /**
@@ -201,6 +225,18 @@ export class OverviewComponent implements OnInit, OnDestroy {
    */
   onFinalStepReached() {
     console.log(`final step reached`);
+  }
+
+  /**
+   * Handles stepper being reset
+   */
+  onResetStepper() {
+    this.sports = [];
+    this.offerings = [];
+    this.members = 0;
+    this.federalState = "";
+
+    this.stepper?.reset();
   }
 
   /**

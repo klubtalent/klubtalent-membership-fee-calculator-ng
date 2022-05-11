@@ -50,6 +50,9 @@ export class MaterialIconService {
     iconRegistry.addSvgIcon('volleyball', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/volleyball.svg'));
     iconRegistry.addSvgIcon('yoga', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/yoga.svg'));
 
+    iconRegistry.addSvgIcon('music-clef-treble', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/music-clef-treble.svg'));
+    iconRegistry.addSvgIcon('drama-masks', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/drama-masks.svg'));
+
     iconRegistry.addSvgIcon('currency-eur', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/currency-eur.svg'));
     iconRegistry.addSvgIcon('map-marker-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/map-marker-outline.svg'));
     iconRegistry.addSvgIcon('search', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/magnify.svg'));
@@ -98,6 +101,18 @@ export class MaterialIconService {
       case "Tischtennis": return "table-tennis";
       case "Volleyball": return "volleyball";
       case "Yoga": return "yoga";
+      default: return "";
+    }
+  }
+
+  /**
+   * Retrieves icon
+   * @param value value
+   */
+  getOfferingsIcon(value: string) {
+    switch (value) {
+      case "Musik": return "music-clef-treble";
+      case "Kultur": return "drama-masks";
       default: return "";
     }
   }
