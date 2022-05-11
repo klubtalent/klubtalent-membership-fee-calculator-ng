@@ -6,12 +6,40 @@
 @import '../../../../../styles';
 @import '../../../../../sizes';
 
+.content-overview, .toolbar {
+  @media #{$breakpoint-small} {
+    margin: 10px;
+    padding-bottom: 20px;
+  }
+  @media #{$breakpoint-medium} {
+    margin: 20px;
+    padding-bottom: 40px;
+  }
+  @media #{$breakpoint-large} {
+    margin: 40px;
+    padding-bottom: 60px;
+  }
+}
+
 .button-container {
   margin-top: 24px;
 }
 
 .button-separator {
   width: 48px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
 }
 
 .state-logo-wrapper {

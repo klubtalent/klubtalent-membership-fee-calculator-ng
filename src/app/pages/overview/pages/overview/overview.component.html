@@ -57,7 +57,7 @@
         <ng-template matStepLabel>Wie viele Mitglieder hat dein Verein?</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Mitglieder</mat-label>
-          <input matInput type="number" placeholder="0" formControlName="memberControl" required [(ngModel)]="members">
+          <input matInput type="number" placeholder="0" formControlName="membersControl" required [(ngModel)]="members">
         </mat-form-field>
         <div class="flexcontainer">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -65,6 +65,26 @@
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
           <button mat-button matStepperNext color="accent"
                   [disabled]="membersFormGroup == undefined || !membersFormGroup.valid">weiter
+          </button>
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="membershipFeesFormGroup!">
+      <form [formGroup]="membershipFeesFormGroup!">
+        <ng-template matStepLabel>Wie hoch ist der monatliche Mitgliedsbeitrag deines Vereins aktuell?</ng-template>
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Mitgliedsbeitrag</mat-label>
+          <input matInput type="number" class="example-right-align" placeholder="0" formControlName="membershipFeesControl" required [(ngModel)]="membershipFees">
+          <span matSuffix>.00&nbsp;Euro</span>
+        </mat-form-field>
+        <div class="flexcontainer">
+          <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
+          <button mat-button matStepperPrevious color="accent">zurück</button>
+          <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
+          <button mat-button matStepperNext color="accent"
+                  [disabled]="membershipFeesFormGroup == undefined || !membershipFeesFormGroup.valid">weiter
           </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
         </div>

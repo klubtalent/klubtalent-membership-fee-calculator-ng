@@ -30,6 +30,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   offeringsFormGroup: FormGroup | undefined;
   /** Form group for members */
   membersFormGroup: FormGroup | undefined;
+  /** Form group for membership fees */
+  membershipFeesFormGroup: FormGroup | undefined;
   /** Form group for state */
   stateFormGroup: FormGroup | undefined;
 
@@ -47,7 +49,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   /** Offerings */
   offerings: string[] = [];
   /** Member count */
-  members = 0;
+  members: number | undefined;
+  /** Membership fees */
+  membershipFees: number | undefined;
   /** Federal state */
   federalState = "";
 
@@ -163,7 +167,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.sportsFormGroup = this.formBuilder.group({});
     this.offeringsFormGroup = this.formBuilder.group({});
     this.membersFormGroup = this.formBuilder.group({
-      memberControl: ['', Validators.min(1)],
+      membersControl: ['', Validators.min(1)],
+    });
+    this.membershipFeesFormGroup = this.formBuilder.group({
+      membershipFeesControl: ['', Validators.min(1)],
     });
     this.stateFormGroup = this.formBuilder.group({
       federalStateControl: ['', Validators.required],
@@ -234,6 +241,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.sports = [];
     this.offerings = [];
     this.members = 0;
+    this.membershipFees = 0;
     this.federalState = "";
 
     this.stepper?.reset();
