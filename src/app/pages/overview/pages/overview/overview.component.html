@@ -10,11 +10,11 @@
     <mat-step [stepControl]="offeringsFormGroup!">
       <form [formGroup]="offeringsFormGroup!">
         <ng-template matStepLabel>Was macht dein Verein?</ng-template>
-        <app-sports-selection
-          [itemsList]="sportsList"
-          [backgroundColor]="sportsBackgroundColor"
-          [textColor]="sportsTextColor"
-          (itemsSelectedEventEmitter)="onSportsSelected($event)"></app-sports-selection>
+        <app-selectable-tag-chips [selectableTagsMap]="sportsValuesMap"
+                                  [border]="sportsTextColor"
+                                  [background]="sportsBackgroundColor"
+                                  (tagsChangedEmitter)="onSportsSelected($event)">
+        </app-selectable-tag-chips>
         <div class="button-container flexcontainer">
           <div class="flexbox"></div>
           <button mat-button matStepperNext color="accent" *ngIf="sports.length === 0">
@@ -31,11 +31,11 @@
     <mat-step [stepControl]="offeringsFormGroup!">
       <form [formGroup]="offeringsFormGroup!">
         <ng-template matStepLabel>Hat dein Verein andere Angebote?</ng-template>
-        <app-offerings-selection
-          [itemsList]="offeringsList"
-          [backgroundColor]="offeringsBackgroundColor"
-          [textColor]="offeringsTextColor"
-          (itemsSelectedEventEmitter)="onOfferingsSelected($event)"></app-offerings-selection>
+        <app-selectable-tag-chips [selectableTagsMap]="offeringsValuesMap"
+                                  [border]="offeringsTextColor"
+                                  [background]="offeringsBackgroundColor"
+                                  (tagsChangedEmitter)="onOfferingsSelected($event)">
+        </app-selectable-tag-chips>
         <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
           <button mat-button matStepperPrevious color="accent">zurück</button>

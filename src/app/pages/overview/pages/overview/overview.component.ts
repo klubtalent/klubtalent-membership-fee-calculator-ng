@@ -60,6 +60,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
   /** Suggested membership fees */
   suggestedMembershipFees: number | undefined;
 
+  /** Filter values for sports */
+  sportsValuesMap: Map<string, [string, boolean, boolean]> = new Map<string, [string, boolean, boolean]>();
+  /** Filter values for offerings */
+  offeringsValuesMap: Map<string, [string, boolean, boolean]> = new Map<string, [string, boolean, boolean]>();
+
   /** List of sports */
   sportsList = [
     "Badminton",
@@ -154,6 +159,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.initializeFormGroups();
     this.initializeMedia();
     this.initializeMaterialColors();
+
+    this.initializeSports();
+    this.initializeOfferings();
   }
 
   /**
@@ -208,6 +216,28 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.offeringsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
   }
 
+  /**
+   * Initializes sports
+   */
+  private initializeSports() {
+    this.sportsList.forEach(sport => {
+      this.sportsValuesMap.set(sport, [this.materialIconService.getSportsIcon(sport), false, false]);
+    });
+
+    this.sportsValuesMap = new Map(this.sportsValuesMap);
+  }
+
+  /**
+   * Initializes offerings
+   */
+  private initializeOfferings() {
+    this.offeringsList.forEach(offering => {
+      this.offeringsValuesMap.set(offering, [this.materialIconService.getOfferingsIcon(offering), false, false]);
+    });
+
+    this.offeringsValuesMap = new Map(this.offeringsValuesMap);
+  }
+
   //
   // Actions
   //
@@ -215,15 +245,23 @@ export class OverviewComponent implements OnInit, OnDestroy {
   /**
    * Handle selection of sports
    */
-  onSportsSelected(sports: string[]) {
-    this.sports = sports;
+  onSportsSelected(event: Map<string, [string, boolean, boolean]>) {
+    this.sports = Array.from(event.values()).filter(item => {
+      return item[1];
+    }).map(item => {
+      return item[0];
+    });
   }
 
   /**
    * Handle selection of offerings
    */
-  onOfferingsSelected(offerings: string[]) {
-    this.offerings = offerings;
+  onOfferingsSelected(event: Map<string, [string, boolean, boolean]>) {
+    this.offerings = Array.from(event.values()).filter(item => {
+      return item[1];
+    }).map(item => {
+      return item[0];
+    });
   }
 
   /**
@@ -256,6 +294,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.members = 0;
     this.membershipFees = 0;
     this.federalState = "";
+
+    this.initializeSports();
+    this.initializeOfferings();
 
     this.stepper?.reset();
   }
