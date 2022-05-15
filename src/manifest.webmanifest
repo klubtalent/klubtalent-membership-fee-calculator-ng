@@ -1,6 +1,6 @@
 {
   "name": "Klubtalent Mitgliedsbeitrags-Rechner",
-  "short_name": "KT Mitgliedsbeitrag",
+  "short_name": "Beitrag",
   "theme_color": "hsl(241, 68%, 15%)",
   "background_color": "hsl(241, 68%, 99%)",
   "display": "standalone",
