@@ -100,7 +100,7 @@
                       [(ngModel)]="federalState">
             <mat-option [value]="federalState" *ngFor="let federalState of federalStatesList">
               <span class="state-logo-wrapper">
-                  <img class="state-logo" alt="" [src]="getFederalStateLogo(federalState)"/>
+                  <img class="state-logo" alt="" [data-src]="getFederalStateLogo(federalState)"/>
               </span>
               {{ federalState }}
             </mat-option>
