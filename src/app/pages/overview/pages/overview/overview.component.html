@@ -17,10 +17,10 @@
         </app-selectable-tag-chips>
         <div class="button-container flexcontainer">
           <div class="flexbox"></div>
-          <button mat-button matStepperNext color="accent" aria-label="continue" *ngIf="sports.length === 0">
+          <button mat-button matStepperNext class="button" aria-label="continue" *ngIf="sports.length === 0">
             weiter ohne Auswahl
           </button>
-          <button mat-button matStepperNext color="accent" aria-label="continue" *ngIf="sports.length > 0">
+          <button mat-button matStepperNext class="button" aria-label="continue" *ngIf="sports.length > 0">
             weiter
           </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -38,12 +38,12 @@
         </app-selectable-tag-chips>
         <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
-          <button mat-button matStepperPrevious color="accent" aria-label="back">zurück</button>
+          <button mat-button matStepperPrevious class="button" aria-label="back">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
-          <button mat-button matStepperNext color="accent" aria-label="continue" *ngIf="offerings.length === 0">
+          <button mat-button matStepperNext class="button" aria-label="continue" *ngIf="offerings.length === 0">
             keine weiteren Angebote
           </button>
-          <button mat-button matStepperNext color="accent" aria-label="continue" *ngIf="offerings.length > 0">
+          <button mat-button matStepperNext class="button" aria-label="continue" *ngIf="offerings.length > 0">
             weiter
           </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -61,9 +61,9 @@
         </mat-form-field>
         <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
-          <button mat-button matStepperPrevious color="accent" aria-label="back">zurück</button>
+          <button mat-button matStepperPrevious class="button" aria-label="back">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
-          <button mat-button matStepperNext color="accent" aria-label="continue"
+          <button mat-button matStepperNext class="button" aria-label="continue"
                   [disabled]="membersFormGroup == undefined || !membersFormGroup.valid">weiter
           </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -82,9 +82,9 @@
         </mat-form-field>
         <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
-          <button mat-button matStepperPrevious color="accent" aria-label="back">zurück</button>
+          <button mat-button matStepperPrevious class="button" aria-label="back">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
-          <button mat-button matStepperNext color="accent" aria-label="continue"
+          <button mat-button matStepperNext class="button" aria-label="continue"
                   [disabled]="membershipFeesFormGroup == undefined || !membershipFeesFormGroup.valid">weiter
           </button>
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
@@ -108,9 +108,9 @@
         </mat-form-field>
         <div class="flexcontainer button-container">
           <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
-          <button mat-button matStepperPrevious color="accent" aria-label="back">zurück</button>
+          <button mat-button matStepperPrevious class="button" aria-label="back">zurück</button>
           <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
-          <button mat-button matStepperNext color="accent" aria-label="continue"
+          <button mat-button matStepperNext class="button" aria-label="continue"
                   [disabled]="stateFormGroup == undefined || !stateFormGroup.valid" (click)="onStepChange()">
             weiter
           </button>
@@ -134,9 +134,9 @@
       </div>
       <div class="flexcontainer button-container">
         <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
-        <button mat-button matStepperPrevious color="accent" aria-label="back">zurück</button>
+        <button mat-button matStepperPrevious class="button" aria-label="back">zurück</button>
         <div class="flexbox button-separator" *ngIf="media < mediaType.MEDIUM"></div>
-        <button mat-button (click)="onResetStepper()" color="accent" aria-label="continue">von vorn beginnen</button>
+        <button mat-button (click)="onResetStepper()" class="button" aria-label="continue">von vorn beginnen</button>
         <div class="flexbox" *ngIf="media > mediaType.SMALL"></div>
       </div>
     </mat-step>

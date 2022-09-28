@@ -81,6 +81,10 @@ input.example-right-align {
   .update-arrow {
     fill: mat.get-color-from-palette($klubtalent-blue-accent, 500);
   }
+
+  .button {
+    color: mat.get-color-from-palette($klubtalent-blue-accent, 500);
+  }
 }
 
 ::ng-deep .klubtalent-dark-blue-theme {
@@ -94,6 +98,10 @@ input.example-right-align {
 
   .update-arrow {
     fill: mat.get-color-from-palette($klubtalent-dark-blue-accent, 500);
+  }
+
+  .button {
+    color: mat.get-color-from-palette($klubtalent-dark-blue-accent, 500);
   }
 }
 
@@ -109,6 +117,10 @@ input.example-right-align {
   .update-arrow {
     fill: mat.get-color-from-palette($klubtalent-purple-accent, 500);
   }
+
+  .button {
+    color: mat.get-color-from-palette($klubtalent-purple-accent, 500);
+  }
 }
 
 ::ng-deep .klubtalent-yellow-theme {
@@ -123,6 +135,10 @@ input.example-right-align {
   .update-arrow {
     fill: mat.get-color-from-palette($klubtalent-yellow-accent, 500);
   }
+
+  .button {
+    color: mat.get-color-from-palette($klubtalent-yellow-accent, 500);
+  }
 }
 
 ::ng-deep .klubtalent-green-theme {
@@ -136,5 +152,9 @@ input.example-right-align {
 
   .update-arrow {
     fill: mat.get-color-from-palette($klubtalent-green-accent, 500);
+  }
+
+  .button {
+    color: mat.get-color-from-palette($klubtalent-green-accent, 500);
   }
 }
